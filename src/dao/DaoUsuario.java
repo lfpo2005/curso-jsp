@@ -47,6 +47,7 @@ public class DaoUsuario {
 		ResultSet resultSet = statement.executeQuery();
 		while (resultSet.next()) {
 			 BeanCursoJsp beanCursoJsp = new BeanCursoJsp();
+			 beanCursoJsp.setId(resultSet.getLong("id"));
 			beanCursoJsp.setLogin(resultSet.getString("login"));
 			beanCursoJsp.setSenha(resultSet.getString("senha"));
 			
@@ -60,19 +61,63 @@ public class DaoUsuario {
 		public void delete (String login) {
 			
 			try {
-			String sql = "delete from usuario where login = '"+ login+ "'";
+			String sql = "delete from usuario where id = '" + login + "'";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.execute();
-			
+			preparedStatement.execute();			
 			connection.commit();
+			
 		}catch(Exception e){
 			e.printStackTrace();
 			try {
 				connection.rollback();
 			} catch (SQLException e1) {
+				e1.printStackTrace();
 			}
-			;
 		}
+		}
+
+		public BeanCursoJsp consutar(String login)  throws Exception{
+			
+			String sql= "select * from where login='" + login + "'";
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {		
+				
+				BeanCursoJsp beanCursoJsp = new BeanCursoJsp();
+				beanCursoJsp.setId(resultSet.getLong("id"));
+				beanCursoJsp.setLogin(resultSet.getString("login"));
+				beanCursoJsp.setSenha(resultSet.getString("senha"));
+				
+				return beanCursoJsp;
+				
+			}
+			
+			return null;
+		}
+
+		public void atualizar(BeanCursoJsp usuario) {
+			
+			try {
+			String sql = "update usuario set login = ?, senha = ? where id = " + usuario.getId();
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, usuario.getLogin());
+			preparedStatement.setString(2, usuario.getSenha());
+			
+			preparedStatement.executeUpdate();
+			
+			connection.commit();
+			
+			}catch (Exception e) {
+				e.printStackTrace();
+				try {
+					connection.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				
+			}
 		}
 		
 	}
