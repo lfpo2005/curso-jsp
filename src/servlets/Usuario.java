@@ -34,8 +34,8 @@ public class Usuario extends HttpServlet {
 			
 					daoUsuario.delete(user);
 					
-					RequestDispatcher view = request.getRequestDispatcher("cadastroUsuario.jsp");
-					request.setAttribute("usuarios", daoUsuario.listar());
+					RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+					request.setAttribute("usuario", daoUsuario.listar());
 					
 					view.forward(request, response);
 				}	
@@ -43,7 +43,7 @@ public class Usuario extends HttpServlet {
 					
 					BeanCursoJsp beanCursoJsp = daoUsuario.consutar(user);
 					
-					RequestDispatcher view = request.getRequestDispatcher("cadastroUsuario.jsp");
+					RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 					request.setAttribute("user", beanCursoJsp);
 					
 					view.forward(request, response);
@@ -62,7 +62,7 @@ public class Usuario extends HttpServlet {
 		String senha = request.getParameter("senha");
 		
 		BeanCursoJsp usuario = new BeanCursoJsp();
-		usuario.setId(id != null && !id.isEmpty() ? Long.parseLong(id) : 0);
+		usuario.setId(!id.isEmpty()? Long.parseLong(id) : 0);
 		usuario.setLogin(login);
 		usuario.setSenha(senha);
 		
@@ -73,7 +73,6 @@ public class Usuario extends HttpServlet {
 			daoUsuario.atualizar(usuario);
 		}
 		
-		daoUsuario.salvar(usuario);
 		
 		try {
 		RequestDispatcher view = request.getRequestDispatcher("cadastroUsuario.jsp");
