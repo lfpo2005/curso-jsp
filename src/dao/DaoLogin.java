@@ -9,21 +9,15 @@ import connection.SingleConnection;
 
 public class DaoLogin {
 
-	// Precisamos de um objeto do tipo Connection para se conectar ao nosso banco.
 	private Connection connection;
 
-	// Craindo um construtor default ( SEM DIGITAR NADA PRESSIONE AS TECLAS CTRL +
-	// ESPACO.
+	
 	public DaoLogin() {
 
-		// Dizendo ao construtor que precisamos atribuir ao connection a conexão do
-		// banco de dados.
+	
 		connection = SingleConnection.getConnection();
 
-	}
-
-	// Método para validar os dados recebidos por parametros no login
-	//É NECESSÁRIO LANÇAR A EXCESSÃO POIS O MÉTODO IRÁ REALIZAR UMA CONSULTA AO BANCO DE DADOS.
+	}	
 	public boolean validarLogin(String login, String senha) throws SQLException {
 		System.out.println("Entrando no método validarLogin");
 		

@@ -34,16 +34,15 @@ public class Usuario extends HttpServlet {
 			
 					daoUsuario.delete(user);
 					
-					RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
-					request.setAttribute("usuario", daoUsuario.listar());
-					
+					RequestDispatcher view = request.getRequestDispatcher("cadastroUsuario.jsp");
+					request.setAttribute("usuarios", daoUsuario.listar());
 					view.forward(request, response);
 				}	
 				else if(acao.equalsIgnoreCase("editar")) {
 					
 					BeanCursoJsp beanCursoJsp = daoUsuario.consutar(user);
 					
-					RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+					RequestDispatcher view = request.getRequestDispatcher("cadastroUsuario.jsp");
 					request.setAttribute("user", beanCursoJsp);
 					
 					view.forward(request, response);

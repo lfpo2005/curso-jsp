@@ -11,7 +11,7 @@
 		
 	<h2>Seja bem vindo ao Sistema JSP!</h2>
 	
-	<a href="cadastroUsuario.jsp">Cadastro de Usu·rio</a>
+	<a href="cadastroUsuario.jsp">Cadastro de Usu√°rio</a>
 	
 </body>
 </html>

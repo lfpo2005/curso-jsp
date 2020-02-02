@@ -5,18 +5,18 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Cadastro de Usuário</title>
+<title>Cadastro de UsuÃ¡rio</title>
 </head>
 <body>
 
-  <h1>Cadastro de Usuário</h1>
+  <h1>Cadastro de UsuÃ¡rio</h1>
     <br>
 
     <form action="salvarUsuario" method="post">
         <table>
         	 <tr>
                 <td>Codigo:</td>
-                <td><input type="text" id="id" name="id" value="${user.id}"> </td>
+                <td><input type="text" readonly="readonly" id="id" name="id" value="${user.id}"/></td>
             </tr>
             <tr>
                 <td>Login:</td>

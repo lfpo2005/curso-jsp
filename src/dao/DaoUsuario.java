@@ -92,7 +92,7 @@ public class DaoUsuario {
 
 		public BeanCursoJsp consutar(String login)  throws Exception{
 			
-			String sql= "select * from where login= '" + login + "'";
+			String sql= "select * from usuario where login= '" + login + "'";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			ResultSet resultSet = preparedStatement.executeQuery();
@@ -119,9 +119,7 @@ public class DaoUsuario {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, usuario.getLogin());
 			preparedStatement.setString(2, usuario.getSenha());
-			
 			preparedStatement.executeUpdate();
-			
 			connection.commit();
 			
 			}catch (Exception e) {

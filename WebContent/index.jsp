@@ -13,9 +13,11 @@
 </head>
 <body>
 
+<h1>Projeto java Jsp</h1>
+
 
 		<form  action="LoginServlet" method="post">
-			Login:
+			 Login:
 			<input type="text" id="login" name="login">
 			<br/>
 			Senha:
