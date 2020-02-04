@@ -1,51 +1,89 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Cadastro de UsuÃ¡rio</title>
+<title>Cadastro de Usuário</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 
-  <h1>Cadastro de UsuÃ¡rio</h1>
-    <br>
+	<div class="container">
+		<div class="form-group">
+			<div class="col-md-6 offset-md-4">
+				<h1>Cadastro de Usuário</h1>
+				<form action="salvarUsuario" method="post">
+					<table class="col-md-6 offset-md-1">
+						<tr>
+							<td>Id:</td>
+							<td><input type="text" class="form-control"
+								readonly="readonly" id="id" name="id" value="${user.id}" /></td>
+						</tr>
+						<tr>
+							<td>Login:</td>
+							<td><input type="text" class="form-control" id="login"
+								name="login" value="${user.login}"></td>
+						</tr>
+						<tr>
+							<td>Senha:</td>
+							<td><input type="password" class="form-control" id="senha"
+								name="senha" value="${user.senha}"></td>
+						</tr>
+						<tr>
+							<td>Nome:</td>
+							<td><input type="text" class="form-control" id="nome"
+								name="nome" value="${user.nome}"></td>
+						</tr>
+					</table>
+					<br>
+					<button type="submit" class="btn btn-primary col-md-5 offset-md-2">Salvar</button>
+				</form>
+				<br>
 
-    <form action="salvarUsuario" method="post">
-        <table>
-        	 <tr>
-                <td>Codigo:</td>
-                <td><input type="text" readonly="readonly" id="id" name="id" value="${user.id}"/></td>
-            </tr>
-            <tr>
-                <td>Login:</td>
-                <td><input type="text" id="login" name="login" value="${user.login}"> </td>
-            </tr>
-            <tr>
-                <td>Senha:</td>
-                <td><input type="password" id="senha" name="senha" value="${user.senha}"> </td>
-            </tr>
-        </table>
-        <input type="submit" value="salvar">
-    </form>
-    
-    <table>
- 	
- 	<c:forEach items="${usuarios}" var ="user">
- 	<tr>
- 		<td style="width: 100px"><c:out value="${user.id}"></c:out></td>
- 		<td style="width: 100px"><c:out value="${user.login}"></c:out></td>
- 		<td><c:out value="${user.senha}"></c:out></td>
- 		
- 		<td><a href="salvarUsuario?acao=delete&user=${user.login}">Excluir</a></td>
- 		<td><a href="salvarUsuario?acao=editar&user=${user.login}">Editar</a></td>
- 	</tr>
- 	</c:forEach> 
- 	
-</table>
+			</div>
+		</div>
+	</div>
+	<br>
 
-    	
+	<div class="form-group">
+		<div class="col-md-5 offset-md-4">
 
+			<table class="table">
+				<h1 class=" offset-md-1">Usuários Cadastrados</h1>
+				<tr>
+					<th>Id</th>
+					<th>Login</th>
+					<th>Nome</th>
+					<th>Delete</th>
+					<th>Editar</th>
+				</tr>
+				<c:forEach items="${usuarios}" var="user">
+					<tbody>
+						<td><c:out value="${user.id}"></c:out></td>
+						<td><c:out value="${user.login}"></c:out></td>
+						<td><c:out value="${user.nome}"></c:out></td>
+
+						<td><a href="salvarUsuario?acao=delete&user=${user.login}"><img
+								alt="Excluir" title="Excluir"
+								src="resources/img/delete-icon.png" width="20px" height="20px"></a></td>
+						<td><a href="salvarUsuario?acao=editar&user=${user.login}"><img
+								alt="Editar" title="Editar" src="resources/img/edit-icon.png"
+								width="20px" height="20px"></a></td>
+						</tr>
+				</c:forEach>
+			</table>
+		</div>
+	</div>
 </body>
 </html>
