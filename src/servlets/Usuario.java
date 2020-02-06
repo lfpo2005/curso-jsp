@@ -34,20 +34,23 @@ public class Usuario extends HttpServlet {
 			if (acao.equalsIgnoreCase("delete")) {
 
 				daoUsuario.delete(user);
-
 				RequestDispatcher view = request.getRequestDispatcher("cadastroUsuario.jsp");
 				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
 			} else if (acao.equalsIgnoreCase("editar")) {
 
 				BeanCursoJsp beanCursoJsp = daoUsuario.consutar(user);
-
 				RequestDispatcher view = request.getRequestDispatcher("cadastroUsuario.jsp");
 				request.setAttribute("user", beanCursoJsp);
-
 				view.forward(request, response);
 
+			} else if (acao.equalsIgnoreCase("listartodos")) {
+
+				RequestDispatcher view = request.getRequestDispatcher("cadastroUsuario.jsp");
+				request.setAttribute("usuarios", daoUsuario.listar());
+				view.forward(request, response);
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -61,20 +64,37 @@ public class Usuario extends HttpServlet {
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
 		String nome = request.getParameter("nome");
+		String fone = request.getParameter("fone");
+		String email = request.getParameter("email");
 
 		BeanCursoJsp usuario = new BeanCursoJsp();
 		usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
 		usuario.setLogin(login);
 		usuario.setSenha(senha);
 		usuario.setNome(nome);
+		usuario.setFone(Long.parseLong(fone));
+		usuario.setEmail(email);
 
-		if (id == null || id.isEmpty()) {
-			daoUsuario.salvar(usuario);
+		try {
 
-		} else {
-			daoUsuario.atualizar(usuario);
+			if (id == null || id.isEmpty() && !daoUsuario.validarLogin(login)) {
+				request.setAttribute("msg", " Login já cadastrado!");
+			}
+
+			if (id == null || id.isEmpty() && daoUsuario.validarLogin(login)) {
+
+				daoUsuario.salvar(usuario);
+			}
+
+			else if (id != null && !id.isEmpty()) {
+				daoUsuario.atualizar(usuario);
+			}
+			
+
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
-
+		
 		try {
 			RequestDispatcher view = request.getRequestDispatcher("cadastroUsuario.jsp");
 			request.setAttribute("usuarios", daoUsuario.listar());
@@ -85,5 +105,4 @@ public class Usuario extends HttpServlet {
 		}
 
 	}
-
 }

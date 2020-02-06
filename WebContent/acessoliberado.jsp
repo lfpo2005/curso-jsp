@@ -22,7 +22,7 @@
   <p>Projeto adaptado do Curso Java JSP do site javaavancado.com
   desenvolvido por Fernando Oliveira para o portfólio fernandooliveira.com</p> 
   <p class="lead">
-    <a class="btn btn-primary btn-lg" href="cadastroUsuario.jsp" role="button">Cadastro de Usuário</a>
+    <a href="salvarUsuario?acao=listartodos" class="btn btn-primary btn-lg"  role="button">Cadastro de Usuário</a>
   </p>
 </div>
 

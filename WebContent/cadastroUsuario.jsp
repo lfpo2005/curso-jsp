@@ -22,6 +22,7 @@
 	<div class="container">
 		<div class="form-group">
 			<div class="col-md-6 offset-md-4">
+			
 				<h1>Cadastro de Usuário</h1>
 				<form action="salvarUsuario" method="post">
 					<table class="col-md-6 offset-md-1">
@@ -34,6 +35,7 @@
 							<td>Login:</td>
 							<td><input type="text" class="form-control" id="login"
 								name="login" value="${user.login}"></td>
+								<h3 class="alert-danger">${msg}</h3>
 						</tr>
 						<tr>
 							<td>Senha:</td>
@@ -45,9 +47,20 @@
 							<td><input type="text" class="form-control" id="nome"
 								name="nome" value="${user.nome}"></td>
 						</tr>
+						<tr>
+							<td>Fone:</td>
+							<td><input type="text" class="form-control" id="Fone"
+								name="fone" value="${user.fone}"></td>
+						</tr>
+						<tr>
+							<td>Email:</td>
+							<td><input type="text" class="form-control" id="email"
+								name="email" value="${user.email}"></td>
+						</tr>
 					</table>
 					<br>
-					<button type="submit" class="btn btn-primary col-md-5 offset-md-2">Salvar</button>
+					<button type="submit" class="btn btn-primary col-md-3 offset-md-1">Salvar</button>
+					<button type="reset" class="btn btn-primary col-md-3 offset-md-0">Cancelar</button>
 				</form>
 				<br>
 
@@ -57,14 +70,16 @@
 	<br>
 
 	<div class="form-group">
-		<div class="col-md-5 offset-md-4">
+		<div class="col-md-6 offset-md-3">
 
 			<table class="table">
-				<h1 class=" offset-md-1">Usuários Cadastrados</h1>
+				<h1 class=" offset-md-3">Usuários Cadastrados</h1>
 				<tr>
 					<th>Id</th>
 					<th>Login</th>
 					<th>Nome</th>
+					<th>Fone</th>
+					<th>E-mail</th>
 					<th>Delete</th>
 					<th>Editar</th>
 				</tr>
@@ -73,11 +88,13 @@
 						<td><c:out value="${user.id}"></c:out></td>
 						<td><c:out value="${user.login}"></c:out></td>
 						<td><c:out value="${user.nome}"></c:out></td>
+						<td><c:out value="${user.fone}"></c:out></td>
+						<td><c:out value="${user.email}"></c:out></td>
 
-						<td><a href="salvarUsuario?acao=delete&user=${user.login}"><img
+						<td><a href="salvarUsuario?acao=delete&user=${user.id}"><img
 								alt="Excluir" title="Excluir"
 								src="resources/img/delete-icon.png" width="20px" height="20px"></a></td>
-						<td><a href="salvarUsuario?acao=editar&user=${user.login}"><img
+						<td><a href="salvarUsuario?acao=editar&user=${user.id}"><img
 								alt="Editar" title="Editar" src="resources/img/edit-icon.png"
 								width="20px" height="20px"></a></td>
 						</tr>

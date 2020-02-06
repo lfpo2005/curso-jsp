@@ -9,6 +9,29 @@ public class BeanCursoJsp {
 	private String senha;
 
 	private String nome;
+	
+	private Long fone;
+	
+	private String email;
+	
+	
+	
+
+	public Long getFone() {
+		return fone;
+	}
+
+	public void setFone(Long fone) {
+		this.fone = fone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getNome() {
 		return nome;
