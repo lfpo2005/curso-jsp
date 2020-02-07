@@ -1,4 +1,4 @@
-<jsp:useBean id="calcula" class="beans.BeanCursoJsp" type="beans.BeanCursoJsp" scope="page" ></jsp:useBean>
+<jsp:useBean id="calcula" class="beans.BeanUsuario" type="beans.BeanUsuario" scope="page" ></jsp:useBean>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -21,9 +21,18 @@
   <hr class="my-4">
   <p>Projeto adaptado do Curso Java JSP do site javaavancado.com
   desenvolvido por Fernando Oliveira para o portfólio fernandooliveira.com</p> 
-  <p class="lead">
-    <a href="salvarUsuario?acao=listartodos" class="btn btn-primary btn-lg"  role="button">Cadastro de Usuário</a>
-  </p>
+  
+  <div class="btn-group">
+   
+    <a href="Usuario?acao=listartodos" class="btn btn-primary"  role="button">Cadastro de  Usuário</a>
+  
+    <a href="cadastroProduto.jsp" class="btn btn-primary "  role="button">Cadastro de Produto</a>
+ 
+  
+</div>
+  
+  
+ 
 </div>
 
 	

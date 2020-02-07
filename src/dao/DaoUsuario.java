@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import beans.BeanCursoJsp;
+import beans.BeanUsuario;
 import connection.SingleConnection;
 
 public class DaoUsuario {
@@ -19,7 +19,7 @@ public class DaoUsuario {
 
 	// metodo salva os dados
 
-	public void salvar(BeanCursoJsp usuario) {
+	public void salvar(BeanUsuario usuario) {
 		try {
 
 			String sql = "insert into usuario(login, senha, nome, fone, email) values (?, ?, ?, ?, ?)";
@@ -49,9 +49,9 @@ public class DaoUsuario {
 	}
 
 	// Metodo para listar cadastros no banco de dados na tabela usuario
-	public java.util.List<BeanCursoJsp> listar() throws Exception {
+	public java.util.List<BeanUsuario> listar() throws Exception {
 
-		java.util.List<BeanCursoJsp> listar = new ArrayList<BeanCursoJsp>(); // criando a lista
+		java.util.List<BeanUsuario> listar = new ArrayList<BeanUsuario>(); // criando a lista
 
 		String sql = "select * from usuario";
 
@@ -60,7 +60,7 @@ public class DaoUsuario {
 
 		while (resultSet.next()) {
 
-			BeanCursoJsp beanCursoJsp = new BeanCursoJsp();
+			BeanUsuario beanCursoJsp = new BeanUsuario();
 			beanCursoJsp.setId(resultSet.getLong("id"));
 			beanCursoJsp.setLogin(resultSet.getString("login"));
 			beanCursoJsp.setSenha(resultSet.getString("senha"));
@@ -94,7 +94,7 @@ public class DaoUsuario {
 	}
 	// Metodo para consutar usuario no banco de dados
 
-	public BeanCursoJsp consutar(String id) throws Exception {
+	public BeanUsuario consutar(String id) throws Exception {
 
 		String sql = "select * from usuario where id= '" + id + "'";
 
@@ -102,7 +102,7 @@ public class DaoUsuario {
 		ResultSet resultSet = preparedStatement.executeQuery();
 		if (resultSet.next()) {
 
-			BeanCursoJsp beanCursoJsp = new BeanCursoJsp();
+			BeanUsuario beanCursoJsp = new BeanUsuario();
 
 			beanCursoJsp.setId(resultSet.getLong("id"));
 			beanCursoJsp.setLogin(resultSet.getString("login"));
@@ -133,7 +133,7 @@ public class DaoUsuario {
 		return false;
 	}
 	
-	public void atualizar(BeanCursoJsp usuario) {
+	public void atualizar(BeanUsuario usuario) {
 
 		try {
 			String sql = "update usuario set login = ?, senha = ?, nome = ?, fone = ?, email = ? where id = " + usuario.getId();
@@ -156,5 +156,17 @@ public class DaoUsuario {
 					e1.printStackTrace();
 				}
 		}
+	}
+	
+	public boolean validarEmail(String email) throws Exception {
+		String sql = "select count(1) as qtd from usuario where email='" + email + "'";
+
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		if (resultSet.next()) {
+			
+			return resultSet.getInt("qtd") <= 0;/*Return true*/
+		}
+		return false;
 	}
 }

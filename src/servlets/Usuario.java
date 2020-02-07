@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.BeanCursoJsp;
+import beans.BeanUsuario;
 import dao.DaoUsuario;
 
-@WebServlet("/salvarUsuario")
+@WebServlet("/Usuario")
 public class Usuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -39,7 +39,7 @@ public class Usuario extends HttpServlet {
 				view.forward(request, response);
 			} else if (acao.equalsIgnoreCase("editar")) {
 
-				BeanCursoJsp beanCursoJsp = daoUsuario.consutar(user);
+				BeanUsuario beanCursoJsp = daoUsuario.consutar(user);
 				RequestDispatcher view = request.getRequestDispatcher("cadastroUsuario.jsp");
 				request.setAttribute("user", beanCursoJsp);
 				view.forward(request, response);
@@ -67,8 +67,8 @@ public class Usuario extends HttpServlet {
 		String fone = request.getParameter("fone");
 		String email = request.getParameter("email");
 
-		BeanCursoJsp usuario = new BeanCursoJsp();
-		usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
+		BeanUsuario usuario = new BeanUsuario();
+		usuario.setId(!id.isEmpty() ? Long.parseLong(id) : null);
 		usuario.setLogin(login);
 		usuario.setSenha(senha);
 		usuario.setNome(nome);
@@ -77,26 +77,40 @@ public class Usuario extends HttpServlet {
 
 		try {
 
-			if (id == null || id.isEmpty() && !daoUsuario.validarLogin(login)) {
-				request.setAttribute("msg", " Login já cadastrado!");
+			String msg = null;
+			boolean podeInserir = true;
+
+			if (id == null || id.isEmpty()
+					&& !daoUsuario.validarLogin(login)) {//QUANDO DOR USUÁRIO NOVO
+				msg = "Usuário já existe com o mesmo login!";
+				podeInserir = false;
+
+			} else if (id == null || id.isEmpty()
+					&& !daoUsuario.validarEmail(email)) {// QUANDO FOR USUÁRIO NOVO
+				msg = " A senha já existe para outro usuário!";
+				podeInserir = false;
 			}
 
-			if (id == null || id.isEmpty() && daoUsuario.validarLogin(login)) {
+			if (msg != null) {
+				request.setAttribute("msg", msg);
+			}
+
+			if (id == null || id.isEmpty()
+					&& daoUsuario.validarLogin(login) && podeInserir) {
 
 				daoUsuario.salvar(usuario);
-			}
 
-			else if (id != null && !id.isEmpty()) {
+			} else if (id != null && !id.isEmpty() && podeInserir) {
 				daoUsuario.atualizar(usuario);
 			}
 			
+			if (!podeInserir) {
+				request.setAttribute("user", usuario);//mantem os dados do usuario no formulario 
+													  //caso o login e  senha  já estiverem cadastados por outro usuário
+			}
 
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-		
-		try {
-			RequestDispatcher view = request.getRequestDispatcher("cadastroUsuario.jsp");
+			RequestDispatcher view = request
+					.getRequestDispatcher("/cadastroUsuario.jsp");
 			request.setAttribute("usuarios", daoUsuario.listar());
 			view.forward(request, response);
 

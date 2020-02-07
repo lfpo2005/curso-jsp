@@ -1,9 +1,14 @@
 <component name="ProjectDictionaryState">
   <dictionary name="lfpo2">
     <words>
-      <w>conectar</w>
-      <w>jdbc</w>
-      <w>postgresql</w>
+      <w>acao</w>
+      <w>cadastro</w>
+      <w>editar</w>
+      <w>listartodos</w>
+      <w>produto</w>
+      <w>produtos</w>
+      <w>quantidade</w>
+      <w>salvar</w>
     </words>
   </dictionary>
 </component>
