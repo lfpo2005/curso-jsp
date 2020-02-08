@@ -33,20 +33,20 @@ public class Produto extends HttpServlet {
 			if (acao.equalsIgnoreCase("delete")) {
 
 				daoProduto.delete(pdt);
-				RequestDispatcher view = request.getRequestDispatcher("cadastroProduto.jsp");
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroProduto.jsp");
 				request.setAttribute("produtos", daoProduto.listar());
 				view.forward(request, response);
 
 			} else if (acao.equalsIgnoreCase("editar")) {
 
 				BeanProduto beanProduto = daoProduto.consutar(pdt);
-				RequestDispatcher view = request.getRequestDispatcher("cadastroProduto.jsp");
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroProduto.jsp");
 				request.setAttribute("pdt", beanProduto);
 				view.forward(request, response);
 
 			} else if (acao.equalsIgnoreCase("listartodos")) {
 
-				RequestDispatcher view = request.getRequestDispatcher("cadastroProduto.jsp");
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroProduto.jsp");
 				request.setAttribute("produtos", daoProduto.listar());
 				view.forward(request, response);
 			}
@@ -74,17 +74,17 @@ public class Produto extends HttpServlet {
 
 		try {
 
-			String msg = null;
+		//	String msg = null;
 			boolean podeInserir = true;
 
-			if (id == null || id.isEmpty() && daoProduto.validarNome(nome)) {
-				msg = "Produto já cadastrado";
-				podeInserir = false;
-			}
-
-			if (msg != null) {
-				request.setAttribute("msg", msg);
-			}
+//			if (id == null || id.isEmpty() && !daoProduto.validarNome(nome)) {
+//				msg = "Produto já cadastrado";
+//				podeInserir = false;
+//			}
+//
+//			if (msg != null) {
+//				request.setAttribute("msg", msg);
+//			}
 
 			if (id == null || id.isEmpty() && daoProduto.validarNome(nome) && podeInserir) {
 
@@ -94,11 +94,12 @@ public class Produto extends HttpServlet {
 			else if (id != null && !id.isEmpty() && podeInserir) {
 				daoProduto.atualizar(produto);
 			}
+			
 			if (!podeInserir) {
 				request.setAttribute("pdt", produto);
 			}
 
-			RequestDispatcher view = request.getRequestDispatcher("/cadatroProduto.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("/cadastroProduto.jsp");
 			request.setAttribute("produtos", daoProduto.listar());
 			view.forward(request, response);
 
