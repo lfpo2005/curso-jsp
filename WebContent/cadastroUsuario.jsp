@@ -26,6 +26,7 @@
 				<h1>Cadastro de Usuário</h1>
 				<form action="Usuario" method="post">
 					<table class="col-md-6 offset-md-1">
+				      <h3 class="alert-danger">${msg}</h3>
 						<tr>
 							<td>Id:</td>
 							<td><input type="text" class="form-control"
@@ -35,7 +36,6 @@
 							<td>Login:</td>
 							<td><input type="text" class="form-control" id="login"
 								name="login" value="${user.login}"></td>
-								<h3 class="alert-danger">${msg}</h3>
 						</tr>
 						<tr>
 							<td>Senha:</td>

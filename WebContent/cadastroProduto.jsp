@@ -80,10 +80,10 @@
 						<td><c:out value="${pdt.quantidade}"></c:out></td>
 						<td><c:out value="${pdt.valor}"></c:out></td>
 
-						<td><a href="Produto?acao=delete&user=${pdt.id}"><img
+						<td><a href="Produto?acao=delete&pdt=${pdt.id}"><img
 								alt="Excluir" title="Excluir"
 								src="resources/img/delete-icon.png" width="20px" height="20px"></a></td>
-						<td><a href="Produto?acao=editar&user=${pdt.id}"><img
+						<td><a href="Produto?acao=editar&pdt=${pdt.id}"><img
 								alt="Editar" title="Editar" src="resources/img/edit-icon.png"
 								width="20px" height="20px"></a></td>
 						</tr>

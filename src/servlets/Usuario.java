@@ -82,12 +82,12 @@ public class Usuario extends HttpServlet {
 
 			if (id == null || id.isEmpty()
 					&& !daoUsuario.validarLogin(login)) {//QUANDO DOR USUÁRIO NOVO
-				msg = "Usuário já existe com o mesmo login!";
+				msg = "Login já cadastrado para outro usuário!";
 				podeInserir = false;
 
 			} else if (id == null || id.isEmpty()
 					&& !daoUsuario.validarEmail(email)) {// QUANDO FOR USUÁRIO NOVO
-				msg = " A senha já existe para outro usuário!";
+				msg = "\n O email  já cadastrado por outro usuário!";
 				podeInserir = false;
 			}
 

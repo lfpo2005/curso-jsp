@@ -39,7 +39,7 @@ public class DaoUsuario {
 			e.printStackTrace(); // imprime o erro no console
 			try {
 
-				connection.rollback(); // anula todas as alterações que seriam realizadas em
+				connection.rollback(); // anula todas as alteraï¿½ï¿½es que seriam realizadas em
 				// caso de algum erro.
 
 			} catch (SQLException e1) {
@@ -60,15 +60,15 @@ public class DaoUsuario {
 
 		while (resultSet.next()) {
 
-			BeanUsuario beanCursoJsp = new BeanUsuario();
-			beanCursoJsp.setId(resultSet.getLong("id"));
-			beanCursoJsp.setLogin(resultSet.getString("login"));
-			beanCursoJsp.setSenha(resultSet.getString("senha"));
-			beanCursoJsp.setNome(resultSet.getString("nome"));
-			beanCursoJsp.setFone(resultSet.getLong("fone"));
-			beanCursoJsp.setEmail(resultSet.getString("email"));
+			BeanUsuario daoUsuario = new BeanUsuario();
+			daoUsuario.setId(resultSet.getLong("id"));
+			daoUsuario.setLogin(resultSet.getString("login"));
+			daoUsuario.setSenha(resultSet.getString("senha"));
+			daoUsuario.setNome(resultSet.getString("nome"));
+			daoUsuario.setFone(resultSet.getLong("fone"));
+			daoUsuario.setEmail(resultSet.getString("email"));
 
-			listar.add(beanCursoJsp);
+			listar.add(daoUsuario);
 		}
 
 		return listar;
@@ -102,16 +102,16 @@ public class DaoUsuario {
 		ResultSet resultSet = preparedStatement.executeQuery();
 		if (resultSet.next()) {
 
-			BeanUsuario beanCursoJsp = new BeanUsuario();
+			BeanUsuario daoUsuario = new BeanUsuario();
 
-			beanCursoJsp.setId(resultSet.getLong("id"));
-			beanCursoJsp.setLogin(resultSet.getString("login"));
-			beanCursoJsp.setSenha(resultSet.getString("senha"));
-			beanCursoJsp.setNome(resultSet.getString("nome"));
-			beanCursoJsp.setFone(resultSet.getLong("fone"));
-			beanCursoJsp.setEmail(resultSet.getString("email"));
+			daoUsuario.setId(resultSet.getLong("id"));
+			daoUsuario.setLogin(resultSet.getString("login"));
+			daoUsuario.setSenha(resultSet.getString("senha"));
+			daoUsuario.setNome(resultSet.getString("nome"));
+			daoUsuario.setFone(resultSet.getLong("fone"));
+			daoUsuario.setEmail(resultSet.getString("email"));
 
-			return beanCursoJsp;
+			return daoUsuario;
 
 		}
 
@@ -158,7 +158,7 @@ public class DaoUsuario {
 		}
 	}
 	
-	public boolean validarEmail(String email) throws Exception {
+	public boolean validarEmail(String email) throws Exception{ 
 		String sql = "select count(1) as qtd from usuario where email='" + email + "'";
 
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
