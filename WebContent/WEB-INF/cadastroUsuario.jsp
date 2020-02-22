@@ -152,7 +152,7 @@
 								alt="Editar" title="Editar" src="resources/img/edit-icon.png"
 								width="20px" height="20px"></a></td>
 								
-						<td><a href="salvarTelefones?user=${user.id}"><img
+						<td><a href="telefones?user=${user.id}"><img
 								alt="telefones" title="telefones" src="resources/img/phone.png"
 								width="23px" height="23px"></a></td>	
 						</tr>

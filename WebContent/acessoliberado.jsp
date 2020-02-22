@@ -17,10 +17,10 @@
 
 <div class="jumbotron">
   <h1 class="display-4">Bem vindo ao Projeto Java JSP!</h1>
-  <p class="lead">Este é um projeto feio com as tecnologias Java(JSP) e Bootstrap 4.</p>
+  <p class="lead">Projeto do Curso Java JSP do site javaavancado.com.</p>
   <hr class="my-4">
-  <p>Projeto adaptado do Curso Java JSP do site javaavancado.com
-  desenvolvido por Fernando Oliveira para o portfólio fernandooliveira.com</p> 
+  <p>Projeto desenvolvido com as tecnologias Java(JSP), JDBC e Bootstrap 4.
+  Desenvolvido por Fernando Oliveira para o portfólio fernandooliveira.com</p> 
   
   <div class="btn-group">
    

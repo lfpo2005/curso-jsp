@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="ISO-8859-1">
 <title>Cadastro de Produtos</title>
@@ -17,15 +18,24 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 </head>
+
 <body>
+<div class="btn-group">
+   
+    <a href="acessoliberado.jsp" class="btn btn-primary"  role="button">Inicio</a>
+  
+    <a href="index.jsp" class="btn btn-primary "  role="button">Sair</a>
+  
+</div>
 
 	<div class="container">
 		<div class="form-group">
 			<div class="col-md-6 offset-md-4">
-			
+
 				<h1>Cadastro de Podutos</h1>
-				<form action="Produto" method="post">
-					<table class="col-md-6 offset-md-1">
+				<form action="Produto" method="post"
+					onsubmit="return validar()? true : false;">
+					<table class=" col-md-6 offset-md-1">
 						<tr>
 							<td>Id:</td>
 							<td><input type="text" class="form-control"
@@ -35,7 +45,7 @@
 							<td>Nome:</td>
 							<td><input type="text" class="form-control" id="nome"
 								name="nome" value="${pdt.nome}"></td>
-								<h3 class="alert-danger">${msg}</h3>
+							<h3 class="alert-danger">${msg}</h3>
 						</tr>
 						<tr>
 							<td>Quantidade:</td>
@@ -47,7 +57,7 @@
 							<td><input type="text" class="form-control" id="valor"
 								name="valor" value="${pdt.valor}"></td>
 						</tr>
-						
+
 					</table>
 					<br>
 					<button type="submit" class="btn btn-primary col-md-3 offset-md-1">Salvar</button>
@@ -91,5 +101,28 @@
 			</table>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+	
+	function validar() {
+		
+		if (document.getElementById('nome').value == ''){
+			alert('Informe o Nome');
+			return false;
+		}
+		else if (document.getElementById('quantidade').value == ''){
+			alert('Informe o Quantidade');
+			return false;
+		}
+		else if (document.getElementById('valor').value == ''){
+			alert('Informe o Valor');
+			return false;
+		}
+		return true;
+	}
+	
+	</script>
+
 </body>
+
 </html>
